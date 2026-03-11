@@ -51,3 +51,19 @@ spin=002 status=200 summary_fields=13
 ...
 Saved 100 spins to spin_data.jsonl and spin_summary.csv
 ```
+
+
+## Build cumulative symbol frequencies by reel
+
+After collecting `spin_data.jsonl`, generate a table of cumulative symbol counts
+per reel:
+
+```bash
+python3 analyze_reel_symbols.py --input-jsonl spin_data.jsonl --output-csv reel_symbol_frequency.csv
+```
+
+This produces `reel_symbol_frequency.csv` with one row per symbol and columns for
+each reel (`reel_1`, `reel_2`, ...), plus a `total` column.
+
+It supports the current Mystic Fortune payload shape where symbols are under
+`response.game.play.videoslotstate.reellist[*].symbols.symbol[*].name`.

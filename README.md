@@ -53,6 +53,19 @@ Saved 100 spins to spin_data.jsonl and spin_summary.csv
 ```
 
 
+## Reconstruct reelset overlap chains from virtual reels
+
+After collecting `spin_data.jsonl`, reconstruct the observed `virtualreellist`
+windows into overlap chains where each next partial reel shifts by one symbol:
+
+```bash
+python3 reconstruct_reelset.py --input-jsonl spin_data.jsonl
+```
+
+The output groups unique partial reels by reel, shows their frequencies, and
+orders them into exact one-step overlap chains whenever the observed windows
+allow it.
+
 ## Build cumulative symbol frequencies by reel
 
 After collecting `spin_data.jsonl`, generate a table of cumulative symbol counts
